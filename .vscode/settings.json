@@ -4,9 +4,6 @@
 			"name": "latexmk",
 			"command": "latexmk",
 			"args": [
-                "-synctex=1",
-                "-pdfdvi",
-                "-interaction=nonstopmode",
                 "%DOC%"
 			]
 		},

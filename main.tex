@@ -22,7 +22,28 @@ Microsoft Wordみたいなものです。テキストファイルでいろいろ
 などのメリットがありますが覚えることが多いのが難点。\textbf{ある程度網羅的なサンプルがあればコピペで作れるのでこのテンプレを全員で育てましょう。}
 
 \subsection{OverleafとCloudLatex}
-どちらもオンラインLatex環境ですが、Overleafは無料プランではコンパイル時間に制限があります。使い勝手はOverleafのほうが良い印象ですが、Cloud Latexはコンパイル時間に制限がない、VS CodeやGithubと連携できたりとメリットがあります。報告書であればOverleafが勝手が良いとは思いますが、どちらか一つしか使わないのであればCloud Latex推奨です。Overleafで使う場合にはlatexmkrcファイルと、左上メニューからコンパイラ: Latexの設定が必要です。どちらにしても新規プロジェクトからzipファイルのアップロードができます。
+どちらもオンラインLatex環境ですが、Overleafは無料プランではコンパイル時間に制限があります。使い勝手はOverleafのほうが良い印象ですが、Cloud Latexはコンパイル時間に制限がない、VS Codeと連携できたりとメリットがあります。報告書であればOverleafが勝手が良いとは思いますが、どちらか一つしか使わないのであればCloud Latex推奨です。Overleafで使う場合にはlatexmkrcファイルと、左上メニューからコンパイラ: Latexの設定が必要です。どちらにしても新規プロジェクトからzipファイルのアップロードができます。
+
+\subsection{ローカル\LaTeX 環境の構築}
+卒論などの長文では、Gitでバージョン管理したほうがよく、またlatexdiff-vcで差分ファイルを作成できると便利です。Cloud Latexはローカルファイルと同期させることもできるので実現可能ですが、latexdiff-vcは使えないのでローカル環境を整えたほうが良い場合も多いです。最も手軽なVS Code-Docker環境のセットアップを紹介します。Windows環境でインストールすべきは
+\begin{itemize}
+  \item VS Code
+  \item Docker Desktop
+\end{itemize}
+です。また、VS CodeのExtensionsとして、
+\begin{itemize}
+  \item Remote Development (4つのextensionsのセット、必須なのはDev Containers)
+  \item LaTeX Workshop
+  \item Remote Explorer (必須ではない)
+\end{itemize}
+をインストールしましょう。これで準備完了です。使い方は
+\begin{enumerate}
+  \item VS Codeを起動し、フォルダをD\&Dしてワークスペースを開く
+  \item 左下の``$><$''から、Reopen in containerを押してDockerコンテナのシェルに入る
+  \item main.texを開いて\TeX のところからBuild LaTeX project - Recipe: latexmkかまたは、Terminalからlatexmk main.texと打つ。どのファイルを選択していてもよいので、コマンド打つ方が早い。
+\end{enumerate}
+で、PDF出力までされると思います。SyncTeXに対応しており (LaTeX Workshopの設定が必要かも)、PDFをctrl-クリックで該当のソースへ移動、ソースからはTexタブのView LaTeX PDF - Refresh...で該当のPDFの場所に移動ができます。ちなみに、.devcontainerフォルダにはdockerの設定ファイル、.vscodeフォルダにはLaTeX Workshopの設定ファイル (ワークスペース限定) が入っています。gitignoreはgitの無視するファイルを設定。latexmkrcはlatexmkコマンドの設定。
+% latexmk -synctex=1 -silent -pdfdvi main.tex
 
 \subsection{章と節、その他}
 章は\textbackslash section\{章タイトル\}、節は\textbackslash subsection\{節タイトル\}と書く。subsubsectionもある。
@@ -133,11 +154,11 @@ bmatrix環境:
 \section{参考文献}
 末尾に追加される。bibファイルで管理がしやすい。参照するときは\cite{Fujiwara1984}とする。bibファイルの作成にはzoteroやJabRef、mac OSならBibDeskなどを使うとよい。基本的にbibファイルを論文検索サイトからダウンロードしてきて1つのファイルにまとめていく。
 
-\section{その他}
-\begin{itemize}
-    \item latexdiff-vcを使うと差分を青や赤でマーキングできます。見やすい。
-    \item Gitで管理するといろいろとよい。過去に戻れるし、latexdiff-vcが使いやすくなる。
-\end{itemize}
+% \section{その他}
+% \begin{itemize}
+%     \item latexdiff-vcを使うと差分を青や赤でマーキングできます。見やすい。
+%     \item Gitで管理するといろいろとよい。過去に戻れるし、latexdiff-vcが使いやすくなる。
+% \end{itemize}
 
 \section{報告書の章立て}
 研究報告は以下の構成で書くこと。
