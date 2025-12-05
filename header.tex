@@ -1,0 +1,111 @@
+%-----------------ページ余白の設定---------------------
+\usepackage[top=20mm, bottom=20mm, left=15mm, right=15mm]{geometry}
+%------------------パッケージ読み込み--------------------
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsthm}				%数式align環境,数学記号,定義・定理・証明環境
+\allowdisplaybreaks % align環境の途中での改ページ許可
+\usepackage[subrefformat=parens,labelformat=parens]{subcaption}			%複数図をまとめる
+\usepackage{tabularray}
+\usepackage{url}
+% \usepackage{ascmac}				% 囲み
+% \usepackage{color}					%色付け
+% \usepackage{autonum} % 数式の番号管理
+% \usepackage{relsize} % 拡大縮小
+\usepackage{float} % 図の位置をその場に指定
+    % \restylefloat{figure}
+    % \restylefloat{table}
+\usepackage{wrapfig} % 図の回り込み
+% \usepackage{natbib} 
+% \usepackage[sectionbib]{chapterbib}
+% \usepackage{showkeys} % ラベル表示
+% \usepackage{abstract}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+% いったん全部クリア
+\fancyhead{}
+\fancyfoot{}
+\usepackage{titlesec}
+\titleformat*{\section}{\fontsize{10pt}{12pt}\bfseries}
+\titleformat*{\subsection}{\fontsize{10pt}{12pt}\bfseries}
+\titleformat*{\subsubsection}{\fontsize{10pt}{12pt}\bfseries}
+\usepackage{lmodern}% フォント、警告対策
+
+% ページ番号の書式
+\newcommand{\mynumber}{--- \thepage\ ---} % 「― 1 ―」風
+
+% 偶数ページ左上(Left-Even), 奇数ページ右上(Right-Odd)
+\fancyhead[LE]{\mynumber}
+\fancyhead[RO]{\mynumber}
+
+% ヘッダー下の罫線を消したい場合
+\renewcommand{\headrulewidth}{0pt}
+
+%-------------------コマンドの定義-------------------------
+\newcommand{\bm}{\boldsymbol}
+\newcommand{\del}{\partial}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\theabstract}{} % まず空で用意
+\newcommand{\abstracttxt}[1]{\renewcommand{\theabstract}{#1}}
+\newcommand{\thesupervisorname}{} % まず空で用意
+\newcommand{\thesupervisorposition}{} % まず空で用意
+\newcommand{\supervisor}[2]{% 2つまとめてセット
+  \renewcommand{\thesupervisorname}{#1}%
+  \renewcommand{\thesupervisorposition}{#2}%
+}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}%[section]
+\newtheorem{assumption}{Assumption}%[section]
+\newtheorem{theorem}{Theorem}%[section]
+\newtheorem{lemma}{Lemma}%[section]
+\newtheorem{corollary}{Corollary}%[section]
+\newtheorem{remark}{Remark}%[section]
+% \renewcommand{\proofname}{\textbf{証明}}
+
+% subcaptionの調整
+\captionsetup[subfigure]{labelformat=simple}
+\renewcommand{\thesubfigure}{(\alph{subfigure})}
+
+
+%-------------------ラベル表示の変更-----------------------------
+\date{\number\year/\number\month/\number\day}
+\renewcommand{\figurename}{Fig.}
+\renewcommand{\tablename}{Table}
+% \renewcommand{\refname}{References}
+% \bibliographystyle{sicetran}
+% \bibliographystyle{IEEEtran}
+%\renewcommand{\theenumi}{\alph{enumi}}
+
+\bibliographystyle{ssice}
+
+% タイトルのスタイル
+\makeatletter
+\renewcommand{\maketitle}{
+  \twocolumn[%
+  \begin{center}
+    {\fontsize{20pt}{24pt}\selectfont\bfseries
+      \@title
+    }%
+  \end{center}
+  \hfill\begin{minipage}{0.4\linewidth}
+    % \raggedleft
+    \begin{tblr}{
+      width = { 1.0\linewidth },
+      colspec = {X[1] X[1]}, % 比率指定
+      rows = { rowsep=0pt },
+    }
+    & \\
+    \bfseries 発表者 & \@author \\
+    \bfseries 指導教員 & \thesupervisorname \thesupervisorposition
+  \end{tblr}
+  \end{minipage}
+  \begin{center}
+    \begin{minipage}{0.8\linewidth}
+      % \hrule
+      {\bfseries Abstract:} \theabstract
+    \end{minipage}
+  \end{center}
+  ]%
+}
+\makeatother
