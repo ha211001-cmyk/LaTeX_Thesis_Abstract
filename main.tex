@@ -40,9 +40,9 @@ Microsoft Wordみたいなものです。テキストファイルでいろいろ
 \begin{enumerate}
   \item VS Codeを起動し、フォルダをD\&Dしてワークスペースを開く
   \item 左下の``$><$''から、Reopen in containerを押してDockerコンテナのシェルに入る
-  \item main.texを開いて\TeX のところからBuild LaTeX project - Recipe: latexmkかまたは、Terminalからlatexmk main.texと打つ。どのファイルを選択していてもよいので、コマンド打つ方が早い。
+  \item main.texを開いて、ファイル名が出ているタブの右側にある実行ボタン、左端のバーにある\TeX のところからBuild LaTeX project - Recipe: latexmk、または、ログとか出てくる所のTERMINALからlatexmk main.texと打つなどしてコンパイル
 \end{enumerate}
-で、PDF出力までされると思います。SyncTeXに対応しており (LaTeX Workshopの設定が必要かも)、PDFをctrl-クリックで該当のソースへ移動、ソースからはTexタブのView LaTeX PDF - Refresh...で該当のPDFの場所に移動ができます。ちなみに、.devcontainerフォルダにはdockerの設定ファイル、.vscodeフォルダにはLaTeX Workshopの設定ファイル (ワークスペース限定) が入っています。gitignoreはgitの無視するファイルを設定。latexmkrcはlatexmkコマンドの設定。
+で、PDF出力までされると思います。コンパイル実行ボタンの隣にある虫眼鏡のプレビューボタンでPDFを隣に表示できます。SyncTeXに対応しており (LaTeX Workshopの設定が必要かも)、PDFをctrl-クリックで該当のソースへ移動、ソースからはTexタブのView LaTeX PDF - Refresh...で該当のPDFの場所に移動ができます。ちなみに、.devcontainerフォルダにはdockerの設定ファイル、.vscodeフォルダにはLaTeX Workshopの設定ファイル (ワークスペース限定) が入っています。gitignoreはgitの無視するファイルを設定。latexmkrcはlatexmkコマンドの設定。
 % latexmk -synctex=1 -silent -pdfdvi main.tex
 
 Gitを使うなら、
@@ -118,6 +118,8 @@ Gitを使うなら、
     \caption{キャプション}
     \label{fig:my_figure5}
 \end{figure*}
+
+ファイル拡張子はpdf, png, jpg, epsなどが使える。ベクター画像はpdf、ラスター画像はpngやjpgを使う。epsは古い形式なのであまり推奨しない。画像ファイルはfigフォルダにまとめておくとよい。pdfとjpgを使うのがよい。
 
 
 \section{数式}
