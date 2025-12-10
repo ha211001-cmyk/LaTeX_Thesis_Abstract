@@ -119,9 +119,9 @@ Microsoft Wordみたいなものです。テキストファイルでいろいろ
 \begin{enumerate}
   \item VS Codeを起動し、フォルダをD\&Dしてワークスペースを開く
   \item 左下の``$><$''から、Reopen in containerを押してDockerコンテナのシェルに入る
-  \item main.texを開いて\TeX のところからBuild LaTeX project - Recipe: latexmkかまたは、Terminalからlatexmk main.texと打つ。どのファイルを選択していてもよいので、コマンド打つ方が早い。
+  \item main.texを開いて、ファイル名が出ているタブの右側にある実行ボタン、左端のバーにある\TeX のところからBuild LaTeX project - Recipe: latexmk、または、ログとか出てくる所のTERMINALからlatexmk main.texと打つなどしてコンパイル
 \end{enumerate}
-で、PDF出力までされると思います。SyncTeXに対応しており (LaTeX Workshopの設定が必要かも)、PDFをctrl-クリックで該当のソースへ移動、ソースからはTexタブのView LaTeX PDF - Refresh...で該当のPDFの場所に移動ができます。ちなみに、.devcontainerフォルダにはdockerの設定ファイル、.vscodeフォルダにはLaTeX Workshopの設定ファイル (ワークスペース限定) が入っています。gitignoreはgitの無視するファイルを設定。latexmkrcはlatexmkコマンドの設定。
+で、PDF出力までされると思います。コンパイル実行ボタンの隣にある虫眼鏡のプレビューボタンでPDFを隣に表示できます。SyncTeXに対応しており (LaTeX Workshopの設定が必要かも)、PDFをctrl-クリックで該当のソースへ移動、ソースからはTexタブのView LaTeX PDF - Refresh...で該当のPDFの場所に移動ができます。ちなみに、.devcontainerフォルダにはdockerの設定ファイル、.vscodeフォルダにはLaTeX Workshopの設定ファイル (ワークスペース限定) が入っています。gitignoreはgitの無視するファイルを設定。latexmkrcはlatexmkコマンドの設定。
 % latexmk -synctex=1 -silent -pdfdvi main.tex
 
 Gitを使うなら、
@@ -132,7 +132,6 @@ Gitを使うなら、
 くらい入れれば良い。Clone, Commit, Fetch (Pull), Push, Checkoutくらいを使えれば便利さを感じることができると思います。
 
 \subsection{章と節、その他}
-
 章は\textbackslash section\{章タイトル\}、節は\textbackslash subsection\{節タイトル\}と書く。subsubsectionもある。
 基本的にテキストで書いた順番に並べられるが、図表は自動で配置を決定する。空白行を入れると段落が変わる。数式や図を入れるときに空白行を無駄に入れてしまうのに注意。
 逆に空白行さえ入れなければ段落は変わらず、改行もなく続けて表示される。バックスラッシュ2個で改行できるが、基本的に使わないほうがよい。
