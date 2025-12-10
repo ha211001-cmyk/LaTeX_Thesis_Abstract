@@ -1,6 +1,12 @@
-\documentclass[platex,dvipdfmx,a4j,10pt,twocolumn,twoside]{jsarticle}
+\documentclass[platex,dvipdfmx,a4j,9pt,twocolumn,twoside]{jsarticle}
+% baselinestretchとkanjiskipの設定で指定フォーマットを忠実に再現。
+% 
+% 10pt、baselinestretchとkanjiskipをいじらないのほうが自然
+% \documentclass[platex,dvipdfmx,a4j,10pt,twocolumn,twoside]{jsarticle}
 % 9ptということだが、10ptで1段26文字入るので10ptで。
 \input{header}
+\renewcommand{\baselinestretch}{0.91} % 行間詰め
+
 
 \title{修論・卒論要旨テンプレ}
 \author{名前 書く}
@@ -9,6 +15,7 @@
 \supervisor{名前 書く}{役職}
 
 \begin{document}
+\kanjiskip=.13zw plus .1zw minus .05zw % 文字間広げ
 % 行数調整、59行は詰めすぎなので無視
 % \setlength{\columnsep}{10mm}
 % \renewcommand{\baselinestretch}{0.77}
@@ -16,8 +23,9 @@
 \maketitle
 
 % 文字数カウント用、「は」まで入ると26文字
+% \clearpage
 % \noindent あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん。
-% 行数調整、59行は詰めすぎなので無視
+% 行数調整用
 % \clearpage
 % \noindent １\\
 % \noindent ２\\
