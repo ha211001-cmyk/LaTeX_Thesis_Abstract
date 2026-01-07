@@ -1,6 +1,5 @@
 %-----------------ページ余白の設定---------------------
 \usepackage[top=20mm, bottom=20mm, left=15mm, right=15mm]{geometry}
-
 %------------------パッケージ読み込み--------------------
 \usepackage{caption}
 \usepackage{graphicx}
@@ -71,8 +70,8 @@
 
 %-------------------ラベル表示の変更-----------------------------
 \date{\number\year/\number\month/\number\day}
-\renewcommand{\figurename}{Fig.}
-\renewcommand{\tablename}{Table}
+\renewcommand{\figurename}{Fig.\,}
+\renewcommand{\tablename}{Table\,}
 % \renewcommand{\refname}{References}
 % \bibliographystyle{sicetran}
 % \bibliographystyle{IEEEtran}
@@ -84,29 +83,24 @@
 \makeatletter
 \renewcommand{\maketitle}{
   \twocolumn[%
-  \begin{center}
+    \centering  
     {\fontsize{20pt}{24pt}\selectfont\bfseries
       \@title
-    }%
-  \end{center}
-  \hfill\begin{minipage}{0.4\linewidth}
-    % \raggedleft
-    \begin{tblr}{
-      width = { 1.0\linewidth },
-      colspec = {X[1] X[1]}, % 比率指定
-      rows = { rowsep=0pt },
-    }
-    & \\
-    \bfseries 発表者 & \@author \\
-    \bfseries 指導教員 & \thesupervisorname \thesupervisorposition
+    } \\%
+  \vspace{\baselineskip}
+  \begin{tblr}{
+    width = { 1.0\linewidth },
+    colspec = {X[4] X[1] X[1]}, % 比率指定
+    rows = { rowsep=0pt },
+  }
+  & \bfseries 発表者 & \@author \\
+  & \bfseries 指導教員 & \thesupervisorname~\thesupervisorposition
   \end{tblr}
+  \begin{minipage}{\linewidth}
+    \vspace{\baselineskip}
+    {\bfseries Abstract: }\theabstract
+    \vspace{\baselineskip}
   \end{minipage}
-  \begin{center}
-    \begin{minipage}{0.8\linewidth}
-      % \hrule
-      {\bfseries Abstract:} \theabstract
-    \end{minipage}
-  \end{center}
   ]%
 }
 \makeatother
