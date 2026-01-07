@@ -1,11 +1,11 @@
-\documentclass[platex,dvipdfmx,a4j,10pt,twocolumn,twoside]{jsarticle}
-% 9ptということだが、10ptで1段26文字入るので10ptで。
+\documentclass[uplatex,dvipdfmx,a4j,9pt,twocolumn,twoside]{jsarticle}
+% 9ptということだが、10ptで1段26文字入るので10ptのほうがよい。
 \input{header}
 
-\title{修論・卒論要旨テンプレ}
+\title{2. 修論・卒論要旨テンプレ}
 \author{名前 書く}
 % \date{\today}% \date{2025/1/1}
-\abstracttxt{Write abstrack here.}
+\abstracttxt{Write abstrack here. Write abstrack here. Write abstrack here. Write abstrack here. Write abstrack here. Write abstrack here. Write abstrack here. Write abstrack here.}
 \supervisor{名前 書く}{役職}
 
 \begin{document}
@@ -14,6 +14,7 @@
 % \renewcommand{\baselinestretch}{0.77}
 % \normalsize
 \maketitle
+\setcounter{page}{3} % ページ番号を3に設定
 
 % 文字数カウント用、「は」まで入ると26文字
 % \noindent あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん。
@@ -81,6 +82,7 @@
 % \noindent ６０\\
 
 \section{\LaTeX の概要}
+
 Microsoft Wordみたいなものです。テキストファイルでいろいろ書きます。習うより慣れよ。
 \begin{itemize}
     \item 図や式の番号を自動管理してくれる (参照)
@@ -93,9 +95,11 @@ Microsoft Wordみたいなものです。テキストファイルでいろいろ
 などのメリットがありますが覚えることが多いのが難点。\textbf{ある程度網羅的なサンプルがあればコピペで作れるのでこのテンプレを全員で育てましょう。}
 
 \subsection{OverleafとCloudLatex}
+
 どちらもオンラインLatex環境ですが、Overleafは無料プランではコンパイル時間に制限があります。使い勝手はOverleafのほうが良い印象ですが、Cloud Latexはコンパイル時間に制限がない、VS Codeと連携できたりとメリットがあります。報告書であればOverleafが勝手が良いとは思いますが、どちらか一つしか使わないのであればCloud Latex推奨です。Overleafで使う場合にはlatexmkrcファイルと、左上メニューからコンパイラ: Latexの設定が必要です。どちらにしても新規プロジェクトからzipファイルのアップロードができます。
 
 \subsection{ローカル\LaTeX 環境の構築}
+
 卒論などの長文では、Gitでバージョン管理したほうがよく、またlatexdiff-vcで差分ファイルを作成できると便利です。Cloud Latexはローカルファイルと同期させることもできるので実現可能ですが、latexdiff-vcは使えないのでローカル環境を整えたほうが良い場合も多いです。最も手軽なVS Code-Docker環境のセットアップを紹介します。Windows環境でインストールすべきは
 \begin{itemize}
   \item VS Code
