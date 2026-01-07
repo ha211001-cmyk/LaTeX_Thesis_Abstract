@@ -1,4 +1,4 @@
-\documentclass[uplatex,dvipdfmx,a4j,9pt,twocolumn,twoside]{jsarticle}
+\documentclass[uplatex,dvipdfmx,a4j,10pt,twocolumn,twoside]{jsarticle}
 % 9ptということだが、10ptで1段26文字入るので10ptのほうがよい。
 \input{header}
 
@@ -139,7 +139,7 @@ Gitを使うなら、
 表は表\ref{tab:my_label}のように、
 \begin{table}[b]
     \centering
-    \caption{Captios should be in English.}
+    \caption{Captions should be in English.}
     \begin{tblr}{
       width = { 1.0\linewidth },
       colspec = {X[1] X[1]}, % 比率指定
@@ -156,7 +156,7 @@ Gitを使うなら、
 \begin{figure}[b]
     \centering
     \includegraphics[width=0.4\linewidth]{fig/wind_power.JPG}
-    \caption{Captios should be in English.}
+    \caption{Captions should be in English.}
     \label{fig:my_figure}
 \end{figure}
 並べたい場合はminipageを使う (図\ref{fig:my_figure2}, \ref{fig:my_figure3})。バックスラッシュ2つで改行を入れて縦に並べることもできる。オプションHでtexファイルで書いた位置に画像を入れる。基本的にはt、b、tb (上か下) 推奨。配置にこだわってもうまくいかないことが多いので気にしないということも重要。
@@ -185,14 +185,14 @@ Gitを使うなら、
     \includegraphics[width=0.8\linewidth]{fig/AngularVelocity.pdf}
     \subcaption{Caption}\label{fig:my_figure4-b}
   \end{minipage}
-  \caption{Captios should be in English.}\label{fig:my_figure4}
+  \caption{Captions should be in English.}\label{fig:my_figure4}
 \end{figure}
 キャプションをまとめたいときはsubcaption (図\ref{fig:my_figure4}, \ref{fig:my_figure4-a})。
 2段組み中の1段組みは図\ref{fig:my_figure5}のようにfigure*環境を使う。
 \begin{figure*}[tb]
     \centering
-    \includegraphics[width=0.2\linewidth]{fig/AngularVelocity.pdf}
-    \caption{Captios should be in English.}
+    \includegraphics[width=0.9\linewidth,height=4\baselineskip]{fig/AngularVelocity.pdf}
+    \caption{Captions should be in English. The figure spans both columns in a two-column layout.}
     \label{fig:my_figure5}
 \end{figure*}
 
