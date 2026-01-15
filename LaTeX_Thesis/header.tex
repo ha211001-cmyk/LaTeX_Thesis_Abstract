@@ -146,6 +146,8 @@
 % 参考文献を目次に追加するコマンド
 % 使用例: \makebibliography{ssice}{bibfile}
 \newcommand{\makebibliography}[2]{%
+  \newpage%
+  \phantomsection%
   \addcontentsline{toc}{section}{\numberline{}参考文献}%
   \bibliographystyle{#1}%
   \bibliography{#2}%
@@ -154,8 +156,10 @@
 % 謝辞セクションを目次に追加するコマンド
 % 使用例: \makeacknowledgment{謝辞の本文}
 \newcommand{\makeacknowledgment}[1]{%
-  \section*{謝辞}%
+  \newpage%
+  \phantomsection%
   \addcontentsline{toc}{section}{\numberline{}謝辞}%
+  \section*{謝辞}%
   #1%
 }
 
