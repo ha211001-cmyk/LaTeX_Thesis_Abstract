@@ -1,85 +1,41 @@
-\documentclass[uplatex,dvipdfmx,a4j,10pt,twocolumn,twoside]{jsarticle}
-% 9ptということだが、10ptで1段26文字入るので10ptのほうがよい。
+% !TEX program = platex
+% !TEX encoding = UTF-8
+\documentclass[platex,dvipdfmx,a4j,10pt]{jsarticle}
 \input{header}
 
-\title{2. 修論・卒論要旨テンプレ}
-\author{名前 書く}
-% \date{\today}% \date{2025/1/1}
-\abstracttxt{Write abstrack here. Write abstrack here. Write abstrack here. Write abstrack here. Write abstrack here. Write abstrack here. Write abstrack here. Write abstrack here.}
-\supervisor{名前 書く}{役職}
+% 表紙の設定
+\settitlepage
+  {2025年度}                    % 年度
+  {福井大学}                    % 大学名
+  {工学研究科}                  % 研究科名
+  {学士論文}                    % 文書種別
+  {修論・卒論本旨の \LaTeX テンプレート}  % 日本語タイトル
+  {LaTeX template for master's thesis and graduation thesis abstracts}  % 英語タイトル
+  {2026年2月7日}                % 提出日
+  {書く}                        % 氏名
+  {書く}                        % 学籍番号
+
+% 指導教員情報
+\supervisor{梅本和希}{准教授}
+
+% 学部・コース情報
+\renewcommand{\thefaculty}{福井大学 工学部}
+\renewcommand{\thecourse}{機械・システム工学科 機械工学コース}
 
 \begin{document}
-% 行数調整、59行は詰めすぎなので無視
-% \setlength{\columnsep}{10mm}
-% \renewcommand{\baselinestretch}{0.77}
-% \normalsize
-\maketitle
-\setcounter{page}{3} % ページ番号を3に設定
 
-% 文字数カウント用、「は」まで入ると26文字
-% \noindent あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん。
-% 行数調整、59行は詰めすぎなので無視
-% \clearpage
-% \noindent １\\
-% \noindent ２\\
-% \noindent ３\\
-% \noindent ４\\
-% \noindent ５\\
-% \noindent ６\\
-% \noindent ７\\
-% \noindent ８\\
-% \noindent ９\\
-% \noindent １０\\
-% \noindent １１\\
-% \noindent １２\\
-% \noindent １３\\
-% \noindent １４\\
-% \noindent １５\\
-% \noindent １６\\
-% \noindent １７\\
-% \noindent １８\\
-% \noindent １９\\
-% \noindent ２０\\
-% \noindent ２１\\
-% \noindent ２２\\
-% \noindent ２３\\
-% \noindent ２４\\
-% \noindent ２５\\
-% \noindent ２６\\
-% \noindent ２７\\
-% \noindent ２８\\
-% \noindent ２９\\
-% \noindent ３０\\
-% \noindent ３１\\
-% \noindent ３２\\
-% \noindent ３３\\
-% \noindent ３４\\
-% \noindent ３５\\
-% \noindent ３６\\
-% \noindent ３７\\
-% \noindent ３８\\
-% \noindent ３９\\
-% \noindent ４０\\
-% \noindent ４１\\
-% \noindent ４２\\
-% \noindent ４３\\
-% \noindent ４４\\
-% \noindent ４５\\
-% \noindent ４６\\
-% \noindent ４７\\
-% \noindent ４８\\
-% \noindent ４９\\
-% \noindent ５０\\
-% \noindent ５１\\
-% \noindent ５２\\
-% \noindent ５３\\
-% \noindent ５４\\
-% \noindent ５５\\
-% \noindent ５６\\
-% \noindent ５７\\
-% \noindent ５８\\
-% \noindent ５９\\
-% \noindent ６０\\
+\maketitlepage
+
+%-----------------目次-----------------
+\noheadergeometry
+\pagenumbering{roman}
+\tableofcontents
+\newpage
+\normalgeometry
+
+%-----------------本文-----------------
+% 本文ページはアラビア数字
+\pagenumbering{arabic}
 
 \section{\LaTeX の概要}
 
@@ -159,7 +115,20 @@ Gitを使うなら、
     \caption{Captions should be in English.}
     \label{fig:my_figure}
 \end{figure}
-並べたい場合はminipageを使う (図\ref{fig:my_figure2}, \ref{fig:my_figure3})。バックスラッシュ2つで改行を入れて縦に並べることもできる。オプションHでtexファイルで書いた位置に画像を入れる。基本的にはt、b、tb (上か下) 推奨。配置にこだわってもうまくいかないことが多いので気にしないということも重要。
+並べたい場合はminipageを使う (図\ref{fig:my_figure2}, \ref{fig:my_figure3})。バックスラッシュ2つで改行を入れて縦に並べることもできる。
+
+\subsection{図表の配置オプション}
+図表の配置は\textbackslash begin\{figure\}[配置オプション]や\textbackslash begin\{table\}[配置オプション]で指定する。主な配置オプションは以下の通り:
+\begin{itemize}
+    \item \texttt{h}: here (可能ならその場所に配置)
+    \item \texttt{t}: top (ページの上部に配置)
+    \item \texttt{b}: bottom (ページの下部に配置)
+    \item \texttt{p}: page (図表だけを集めた別ページに配置)
+    \item \texttt{H}: Here (強制的にその場所に配置、floatパッケージが必要)
+    \item \texttt{!}: 制約を緩和 (例: \texttt{!t}で強制的に上部)
+\end{itemize}
+複数組み合わせることも可能で、\texttt{[tb]}とすればページ上部または下部に配置される。\textbf{基本的には\texttt{t}、\texttt{b}、\texttt{tb}を推奨。}配置にこだわってもうまくいかないことが多いので気にしないということも重要。\texttt{H}オプションでtexファイルで書いた位置に画像を入れることができるが、ページ内に収まらない場合はレイアウトが崩れるため注意。
+
 \begin{figure}[b]
   \begin{minipage}[b]{0.47\linewidth}
     \centering
@@ -232,17 +201,43 @@ bmatrix環境:
 
 
 \subsection{数式コマンド}
-ギリシャ文字$\alpha,\beta$、等号不等号$\leq,\approx$、飾り$\bar{x},\tilde{x},\dot{x},\ddot{x}$等かなり数が多い。\textbf{表にだれかがまとめる。}
+ギリシャ文字$\alpha,\beta$、等号不等号$\leq,\approx$、飾り$\bar{x},\tilde{x},\dot{x},\ddot{x}$等かなり数が多い。
 \url{https://cns-guide.sfc.keio.ac.jp/2002/13/4/5.html}にいろいろ載っている。
+
+
+\subsection{よく使う数式コマンド一覧}
+
+\begin{table}[h]
+\centering
+\caption{ギリシャ文字}
+\begin{tblr}{
+  colspec = {X[1] X[1] X[1] X[1]},
+  cell{2-Z}{1,3} = {font=\ttfamily},
+}
+\hline
+コマンド & 表示 & コマンド & 表示 \\
+\hline
+\textbackslash alpha & $\alpha$ & \textbackslash beta & $\beta$ \\
+\textbackslash gamma & $\gamma$ & \textbackslash delta & $\delta$ \\
+\textbackslash epsilon & $\epsilon$ & \textbackslash theta & $\theta$ \\
+\textbackslash lambda & $\lambda$ & \textbackslash mu & $\mu$ \\
+\textbackslash sigma & $\sigma$ & \textbackslash omega & $\omega$ \\
+\hline
+\end{tblr}
+\end{table}
 
 \section{参考文献}
 末尾に追加される。bibファイルで管理がしやすい。参照するときは\cite{Fujiwara1984}とする。bibファイルの作成にはzoteroやJabRef、mac OSならBibDeskなどを使うとよい。基本的にbibファイルを論文検索サイトからダウンロードしてきて1つのファイルにまとめていく。
 
-% \section{その他}
-% \begin{itemize}
-%     \item latexdiff-vcを使うと差分を青や赤でマーキングできます。見やすい。
-%     \item Gitで管理するといろいろとよい。過去に戻れるし、latexdiff-vcが使いやすくなる。
-% \end{itemize}
+\section{差分管理}
+\texttt{latexdiff-vc}を使うと、前回のコミットとの差分を青や赤でマーキングできます。使い方:
+\begin{enumerate}
+    \item Gitリポジトリを初期化: \texttt{git init}
+    \item 初回コミット: \texttt{git add . \&\& git commit -m "Initial commit"}
+    \item 修正後に再度コミット: \texttt{git add . \&\& git commit -m "Update"}
+    \item 差分PDF生成: \texttt{bash diff.sh}
+\end{enumerate}
+生成された\texttt{main-diffHEAD-1.pdf}で変更箇所が確認できます。
 
 \section{報告書の章立て}
 研究報告は以下の構成で書くこと。
@@ -273,5 +268,11 @@ bmatrix環境:
     
 \end{enumerate}
 
-\bibliography{bibfile}
+\makebibliography{ssice}{bibfile}
+
+\makeacknowledgment{%
+本研究の遂行にあたり、ご指導いただいた梅本和希准教授に深く感謝いたします。また、実験協力や有益な助言をいただいた関係者の皆様に心より御礼申し上げます。
+}
+
+
 \end{document}
