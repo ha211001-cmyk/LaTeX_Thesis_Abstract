@@ -2,6 +2,10 @@
 
 以下設定等のメモ書きです。
 
+## 構成
+LaTeX_Thesis：本旨テンプレ
+LaTeX_Thesis_Abstract：要旨テンプレ
+
 
 ## 中川 要旨更新ver
 
@@ -42,17 +46,90 @@ latexmk -silent main.tex
 
 ## VS Codeでdocker-latex
 
-VS CodeとDocker Desktopインストール。拡張は
-1. Remote Devlopment
-2. Latex Workshop
-3. Remote Explorer
+### 初期セットアップ
 
-### 操作手順
+#### 1. 必要なソフトウェアのインストール
 
-1. フォルダドラッグでワークスペースを開く
-2. 左下からReopen in container
-3. Latex Workshopのボタンかターミナルでコマンドたたく
-    `.devcontainer`に`devcontainer.json`をいれておくと勝手にコンテナ起動
+以下を順番にインストールしてください：
+
+1. **Docker Desktop**
+   - [公式サイト](https://www.docker.com/products/docker-desktop/)からダウンロード
+   - macOS/Windows/Linuxに対応
+   - インストール後、Docker Desktopを起動しておく
+
+2. **Visual Studio Code (VS Code)**
+   - [公式サイト](https://code.visualstudio.com/)からダウンロード
+   - 無料のコードエディタ
+
+#### 2. VS Code拡張機能のインストール
+
+VS Codeを開いて、左のサイドバーから拡張機能アイコン（四角が4つ並んだアイコン）をクリックし、以下を検索してインストール：
+
+1. **Dev Containers** (旧Remote Development)
+   - Microsoft製
+   - Dockerコンテナ内で開発するための拡張機能
+   
+2. **LaTeX Workshop**
+   - James Yu製
+   - LaTeXファイルの編集・コンパイル・プレビュー機能を提供
+   
+3. **Remote Explorer** (オプション)
+   - Microsoft製
+   - リモート環境の管理を視覚的に行える
+
+### 使い方
+
+#### 方法1: 自動起動（推奨）
+
+1. **devcontainerの設定ファイルを配置**
+   - プロジェクトのルートディレクトリに `.devcontainer` フォルダを作成
+   - その中に `devcontainer.json` を配置
+   - 例：
+     ```json
+     {
+       "name": "LaTeX",
+       "image": "paperist/alpine-texlive-ja",
+       "customizations": {
+         "vscode": {
+           "extensions": ["james-yu.latex-workshop"]
+         }
+       }
+     }
+     ```
+
+2. **VS Codeでフォルダを開く**
+   - VS Codeを起動
+   - `ファイル` → `フォルダーを開く` から、LaTeXプロジェクトのフォルダを選択
+   - または、フォルダをドラッグ&ドロップ
+
+3. **コンテナで開く**
+   - 右下に「Reopen in Container」という通知が表示されるのでクリック
+   - または、左下の緑色のアイコン（><のマーク）をクリック → 「Reopen in Container」を選択
+   - 初回は数分かかります（Dockerイメージのダウンロード）
+
+4. **LaTeXファイルをコンパイル**
+   - `main.tex` を開く
+   - 左のサイドバーに「TEX」アイコンが表示される
+   - 「Build LaTeX project」ボタンをクリック
+   - または、ターミナルで `latexmk -silent main.tex` を実行
+
+#### 方法2: 手動起動
+
+VS Codeのターミナル（`表示` → `ターミナル`）で以下のコマンドを実行：
+
+```bash
+# 軽量版LaTeXイメージを使用
+docker run -it --name latex-container -v ${PWD}:/workdir paperist/alpine-texlive-ja
+
+# フル機能版を使用する場合
+docker run -it --name latex-container -v ${PWD}:/workdir ghcr.io/being24/latex-docker
+```
+
+### トラブルシューティング
+
+- **Docker Desktopが起動していない**：Docker Desktopアプリを起動してください
+- **コンテナが開かない**：古いコンテナが残っている場合、ターミナルで `docker rm latex-container` を実行
+- **PDFが生成されない**：`.pdf` ファイルを閉じてから再度コンパイルしてください
 
 ## Latex関連リンク
 
